@@ -15,7 +15,7 @@ namespace GameInput
             var horizontal = Input.GetAxis("Horizontal");
             GameplayElements.Instance.Cannon.SetRotationForce(horizontal);
 
-            var isFireRequested = Input.GetAxisRaw("Fire1") > 0;
+            var isFireRequested = Input.GetKeyDown(KeyCode.Space);
             if (isFireRequested)
             {
                 GameplayElements.Instance.Cannon.Fire();

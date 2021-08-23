@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 
-namespace DefaultNamespace
+namespace Factories
 {
     public abstract class ProjectileFactoryBase : MonoBehaviour
     {
         #region Methods
 
-        public abstract void Create();
+        public abstract IProjectile Create(Vector3 atPosition);
 
         #endregion
     }

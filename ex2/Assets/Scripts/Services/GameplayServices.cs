@@ -9,7 +9,7 @@ namespace Services
         #region Fields
 
         private static UnityCore _unityCore;
-        
+
         #endregion
 
         #region Methods
@@ -22,7 +22,7 @@ namespace Services
             var inputManager = new StandaloneInputManager();
             _unityCore.RegisterUpdatable(inputManager);
             _unityCore.RegisterOnEnableAware(inputManager);
-            
+
             Object.DontDestroyOnLoad(go);
         }
 
@@ -34,6 +34,8 @@ namespace Services
         {
             get { return _unityCore; }
         }
+
+        public static ICoroutineService CoroutineService => _unityCore;
 
         #endregion
     }

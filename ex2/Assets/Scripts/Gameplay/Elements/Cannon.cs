@@ -1,4 +1,6 @@
 ﻿using Core;
+using DefaultNamespace.Gameplay;
+using Services;
 using UnityEngine;
 
 namespace Gameplay.Elements
@@ -11,31 +13,24 @@ namespace Gameplay.Elements
         private const float ROTATION_SPEED_FACTOR = 0.1f;
 
         private const string LAUNCH_ANIMATOR_TRIGGER_NAME = "Fire";
-        
+
         #endregion
 
         #region Editor
 
-        [SerializeField]
-        private Transform _rotateTransform;
+        [SerializeField] private Transform _rotateTransform;
 
-        [SerializeField]
-        [Range(1f, 100f)]
-        private float _speed = 5;
-        
-        [SerializeField]
-        [Range(20f, 180f)]
-        private uint _maxRotationAndle = 40;
+        [SerializeField] [Range(1f, 100f)] private float _speed = 5;
 
-        [SerializeField]
-        private Animator _cannonAnimator;
-        
-        [SerializeField]
-        private Transform _launchProjectilePivotL;
-        
-        [SerializeField]
-        private Transform _launchProjectilePivotR;
-        
+        [SerializeField] [Range(20f, 180f)] private uint _maxRotationAndle = 40;
+
+        [SerializeField] private Animator _cannonAnimator;
+
+        [SerializeField] private Transform _launchProjectilePivotL;
+
+        [SerializeField] private Transform _launchProjectilePivotR;
+        [SerializeField] [Range(0.1f, 5f)] private float _cooldownDuration = 1.5f;
+
         #endregion
 
         #region Fields
@@ -45,7 +40,7 @@ namespace Gameplay.Elements
         private float _angleFactorIncrement;
 
         private int _launchTriggerHash;
-       
+
         #endregion
 
         #region Methods
@@ -74,8 +69,21 @@ namespace Gameplay.Elements
 
         public void Fire()
         {
+            if (IsInCooldown) return;
+            IsInCooldown = true;
             _cannonAnimator.SetTrigger(_launchTriggerHash);
+            var pL = GameplayElements.Instance.ProjectileFactory.Create(_launchProjectilePivotL.position);
+            pL.Launch(_launchProjectilePivotL.rotation);
+            var pR = GameplayElements.Instance.ProjectileFactory.Create(_launchProjectilePivotR.position);
+            pR.Launch(_launchProjectilePivotR.rotation);
+            GameplayServices.CoroutineService.WaitFor(_cooldownDuration, () => { IsInCooldown = false; });
         }
+
+        #region Properties
+
+        public bool IsInCooldown { get; private set; }
+
+        #endregion
 
         #endregion
     }

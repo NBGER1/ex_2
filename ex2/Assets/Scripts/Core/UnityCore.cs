@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Core
 {
-    public class UnityCore : MonoBehaviour, IUnityCoreService
+    public class UnityCore : MonoBehaviour, IUnityCoreService, ICoroutineService
     {
         #region Fields
 
@@ -13,9 +14,9 @@ namespace Core
 
         private readonly IList<IOnEnableAware> _onEnableAwares
             = new List<IOnEnableAware>();
-        
+
         #endregion
-        
+
         #region Methods
 
         private void Update()
@@ -42,6 +43,27 @@ namespace Core
         public void RegisterOnEnableAware(IOnEnableAware onEnableAware)
         {
             _onEnableAwares.Add(onEnableAware);
+        }
+
+        public Coroutine RunCoroutine(IEnumerator coroutineBody)
+        {
+            return StartCoroutine(coroutineBody);
+        }
+
+        public void EndCoroutine(Coroutine coroutine)
+        {
+            StopCoroutine(coroutine);
+        }
+
+        public void WaitFor(float delaySeconds, Action endCallback)
+        {
+            RunCoroutine(WaitForInternal(delaySeconds, endCallback));
+        }
+
+        private IEnumerator WaitForInternal(float delaySeconds, Action endcallback)
+        {
+            yield return new WaitForSeconds(delaySeconds);
+            endcallback?.Invoke();
         }
 
         #endregion
