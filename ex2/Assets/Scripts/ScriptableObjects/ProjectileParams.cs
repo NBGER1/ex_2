@@ -7,10 +7,14 @@ namespace DefaultNamespace.ScriptableObjects
     public class ProjectileParams : ScriptableObject
     {
         [Range(0.1f, 100f)] [SerializeField] private float _speed;
-        [SerializeField] private string _collisionTag;
+        [SerializeField] private string[] _collisionTags;
         [SerializeField] [Range(1, 100)] private float _maxDistance;
+        [SerializeField] [Range(0, 1)] private float _mass = 1;
+        [SerializeField] [Range(0, 10)] private float _warmUpTime = 0;
         public float Speed => _speed;
-        public string COLLISION_TAG => _collisionTag;
+        public string[] COLLISION_TAGS => _collisionTags;
         public float MaxDistance => _maxDistance;
+        public float Mass => _mass;
+        public float WarmUpTime => _warmUpTime;
     }
 }

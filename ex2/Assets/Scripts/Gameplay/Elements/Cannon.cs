@@ -31,6 +31,8 @@ namespace Gameplay.Elements
         [SerializeField] private Transform _launchProjectilePivotR;
         [SerializeField] [Range(1f, 3f)] private float _cooldownDuration = 1f;
 
+        [SerializeField]
+
         #endregion
 
         #region Fields
@@ -59,7 +61,8 @@ namespace Gameplay.Elements
         {
             _angleFactor = Mathf.Clamp(_angleFactor + _angleFactorIncrement * Time.deltaTime, -1, 1);
             var angleInDegrees = _maxRotationAngle * _angleFactor;
-            _rotateTransform.localRotation = Quaternion.AngleAxis(angleInDegrees, _rotateTransform.up);
+            var cannonDirection = Quaternion.AngleAxis(angleInDegrees, _rotateTransform.up);
+            _rotateTransform.localRotation = cannonDirection;
         }
 
         public void SetRotationForce(float force)
@@ -74,9 +77,9 @@ namespace Gameplay.Elements
 
 
             _cannonAnimator.SetTrigger(_launchTriggerHash);
-            var pL = GameplayElements.Instance.ProjectileFactory.Create(_launchProjectilePivotL.position);
+            var pL = GameplayElements.Instance.BombFactory.Create(_launchProjectilePivotL.position);
             pL.Launch(_launchProjectilePivotL.rotation);
-            var pR = GameplayElements.Instance.ProjectileFactory.Create(_launchProjectilePivotR.position);
+            var pR = GameplayElements.Instance.BombFactory.Create(_launchProjectilePivotR.position);
             pR.Launch(_launchProjectilePivotR.rotation);
 
             GameplayServices.WaitService

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Target
   - Car
+  - Terrain
   layers:
   - Default
   - TransparentFX
