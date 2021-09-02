@@ -1,5 +1,6 @@
 ﻿using Core;
 using DefaultNamespace.Gameplay;
+using Factories;
 using Services;
 using UnityEngine;
 
@@ -16,8 +17,6 @@ namespace Gameplay.Elements
 
         #region Editor
 
-        [SerializeField] private CannonParams _params;
-
         [SerializeField] private Transform _rotateTransform;
 
 
@@ -31,11 +30,15 @@ namespace Gameplay.Elements
 
         #region Fields
 
+        private CannonParams _params;
+
         private float _angleFactor = 0f;
 
         private float _angleFactorIncrement;
 
         private int _launchTriggerHash;
+        private ProjectileFactoryBase _projectileFactory;
+        private bool _isInitialized = false;
 
         #endregion
 
@@ -48,6 +51,7 @@ namespace Gameplay.Elements
 
         private void Update()
         {
+            if (!_isInitialized) return;
             HandleTurretRotation();
         }
 
@@ -71,9 +75,9 @@ namespace Gameplay.Elements
 
 
             _cannonAnimator.SetTrigger(_launchTriggerHash);
-            var pL = GameplayElements.Instance.BulletFactory.Create(_launchProjectilePivotL.position);
+            var pL = _projectileFactory.Create(_launchProjectilePivotL.position);
             pL.Launch(_launchProjectilePivotL.rotation);
-            var pR = GameplayElements.Instance.BulletFactory.Create(_launchProjectilePivotR.position);
+            var pR = _projectileFactory.Create(_launchProjectilePivotR.position);
             pR.Launch(_launchProjectilePivotR.rotation);
 
             GameplayServices.WaitService
@@ -81,10 +85,13 @@ namespace Gameplay.Elements
                 .OnStart(() => Debug.Log("Cooldown Start"))
                 .OnProgress(progress => Debug.Log("Cooldown progress: " + progress))
                 .OnEnd(() => IsInCooldown = false);
+        }
 
-            //# The code below is to test awaiter exercise only!
-            var testWait = 5.8f;
-            GameplayServices.WaitService.WaitFor(testWait, () => { Debug.Log($"{testWait} seconds have passed"); });
+        public void Init(CannonParams cannonParams, ProjectileFactoryBase projectileFactory)
+        {
+            _params = cannonParams;
+            _projectileFactory = projectileFactory;
+            _isInitialized = true;
         }
 
         #region Properties

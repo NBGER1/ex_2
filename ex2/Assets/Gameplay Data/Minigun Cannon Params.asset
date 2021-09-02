@@ -15,5 +15,5 @@ MonoBehaviour:
   _rotationSpeed: 25
   _rotationSpeedFactor: 0.1
   _maxRotationAngle: 40
-  _cooldownDuration: 0.1
+  _cooldownDuration: 0.25
   _angleFactor: 0

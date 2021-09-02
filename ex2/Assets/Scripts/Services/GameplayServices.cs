@@ -1,5 +1,6 @@
 ﻿using Core;
 using DefaultNamespace.Coroutine_Exercise;
+using DefaultNamespace.Gameplay;
 using GameInput;
 using Notifications;
 using UnityEngine;
@@ -14,6 +15,7 @@ namespace Services
         private static EventBus _eb;
         private static GameplayVfxManager _gameplayVfxManager;
         private static IWaitService _waitService;
+        private static GameplayCore _gameplayCore;
 
         #endregion
 
@@ -25,14 +27,17 @@ namespace Services
             _unityCore = go.AddComponent<UnityCore>();
 
             var inputManager = new StandaloneInputManager();
+            _gameplayCore = new GameplayCore();
+
             _unityCore.RegisterUpdatable(inputManager);
             _unityCore.RegisterOnEnableAware(inputManager);
-
+            _unityCore.RegisterUpdatable(_gameplayCore);
             Object.DontDestroyOnLoad(go);
 
             _eb = new EventBus();
             _gameplayVfxManager = new GameplayVfxManager();
             _waitService = new WaitService();
+            _gameplayCore.StartGame();
         }
 
         #endregion

@@ -12,6 +12,7 @@ namespace DefaultNamespace.Gameplay
         [SerializeField] private ProjectileFactoryBase _bombFactory;
         [SerializeField] private ProjectileFactoryBase _bulletFactory;
         [SerializeField] private ExplosionFactoryBase _explosionFactoryBase;
+        [SerializeField] private CannonParams _cannonParams;
 
         protected override GameplayElements GetInstance()
         {
@@ -23,5 +24,6 @@ namespace DefaultNamespace.Gameplay
         public ProjectileFactoryBase BombFactory => _bombFactory;
         public ProjectileFactoryBase BulletFactory => _bulletFactory;
         public ExplosionFactoryBase ExplosionFactory => _explosionFactoryBase;
+        public CannonParams CannonParams => _cannonParams;
     }
 }

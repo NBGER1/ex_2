@@ -6,20 +6,26 @@ using UnityEngine;
 
 namespace GameInput
 {
-    public class StandaloneInputManager : IUpdatable, IOnEnableAware
+    public class StandaloneInputManager : IUpdatable, IOnEnableAware, IStandaloneInputManager
     {
         #region Methods
 
-        public void Update()
+        public void Move()
         {
             var horizontal = Input.GetAxis("Horizontal");
             GameplayElements.Instance.Cannon.SetRotationForce(horizontal);
+        }
 
+        public void Fire()
+        {
+            GameplayElements.Instance.Cannon.Fire();
+        }
+
+        public void Update()
+        {
+            if (Input.GetAxis("Horizontal") != 0) Move();
             var isFireRequested = Input.GetKeyDown(KeyCode.Space);
-            if (isFireRequested)
-            {
-                GameplayElements.Instance.Cannon.Fire();
-            }
+            if (isFireRequested) Fire();
         }
 
         public void Enable()
