@@ -22,14 +22,14 @@ namespace Gameplay.Elements
 
         [SerializeField] [Range(1f, 100f)] private float _speed = 5;
 
-        [SerializeField] [Range(20f, 180f)] private uint _maxRotationAndle = 40;
+        [SerializeField] [Range(20f, 180f)] private uint _maxRotationAngle = 40;
 
         [SerializeField] private Animator _cannonAnimator;
 
         [SerializeField] private Transform _launchProjectilePivotL;
 
         [SerializeField] private Transform _launchProjectilePivotR;
-        [SerializeField] [Range(1,3)] private int _cooldownDuration = 1;
+        [SerializeField] [Range(1, 3)] private int _cooldownDuration = 1;
 
         #endregion
 
@@ -58,7 +58,7 @@ namespace Gameplay.Elements
         private void HandleTurretRotation()
         {
             _angleFactor = Mathf.Clamp(_angleFactor + _angleFactorIncrement * Time.deltaTime, -1, 1);
-            var angleInDegrees = _maxRotationAndle * _angleFactor;
+            var angleInDegrees = _maxRotationAngle * _angleFactor;
             _rotateTransform.localRotation = Quaternion.AngleAxis(angleInDegrees, _rotateTransform.up);
         }
 
@@ -72,21 +72,18 @@ namespace Gameplay.Elements
             if (IsInCooldown) return;
             IsInCooldown = true;
 
-   
 
             _cannonAnimator.SetTrigger(_launchTriggerHash);
             var pL = GameplayElements.Instance.ProjectileFactory.Create(_launchProjectilePivotL.position);
             pL.Launch(_launchProjectilePivotL.rotation);
             var pR = GameplayElements.Instance.ProjectileFactory.Create(_launchProjectilePivotR.position);
             pR.Launch(_launchProjectilePivotR.rotation);
-            
+
             GameplayServices.WaitService
                 .WaitFor(_cooldownDuration)
                 .OnStart(() => Debug.Log("Cooldown Start"))
                 .OnProgress(progress => Debug.Log("Cooldown progress: " + progress))
                 .OnEnd(() => IsInCooldown = false);
-            
-            //GameplayServices.CoroutineService.WaitFor(_cooldownDuration, () => { IsInCooldown = false; });
         }
 
         #region Properties
