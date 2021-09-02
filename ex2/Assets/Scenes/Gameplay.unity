@@ -463,6 +463,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1036599517946750, guid: 4e04dbca0d2752449af5de224b6727e8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1570450073803288, guid: 4e04dbca0d2752449af5de224b6727e8, type: 3}
       propertyPath: m_Name
       value: Cannon
@@ -511,6 +515,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6843140908416569910, guid: 4e04dbca0d2752449af5de224b6727e8, type: 3}
+      propertyPath: _params
+      value: 
+      objectReference: {fileID: 11400000, guid: 6ddc71193f070434292ae8f6c72ad1f2, type: 2}
     - target: {fileID: 6843140908416569910, guid: 4e04dbca0d2752449af5de224b6727e8, type: 3}
       propertyPath: _cooldownDuration
       value: 1

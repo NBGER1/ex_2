@@ -10,28 +10,22 @@ namespace Gameplay.Elements
     {
         #region Consts
 
-        private const float ROTATION_SPEED_FACTOR = 0.1f;
-
         private const string LAUNCH_ANIMATOR_TRIGGER_NAME = "Fire";
 
         #endregion
 
         #region Editor
 
+        [SerializeField] private CannonParams _params;
+
         [SerializeField] private Transform _rotateTransform;
 
-        [SerializeField] [Range(1f, 100f)] private float _speed = 5;
-
-        [SerializeField] [Range(20f, 180f)] private uint _maxRotationAngle = 40;
 
         [SerializeField] private Animator _cannonAnimator;
 
         [SerializeField] private Transform _launchProjectilePivotL;
 
         [SerializeField] private Transform _launchProjectilePivotR;
-        [SerializeField] [Range(1f, 3f)] private float _cooldownDuration = 1f;
-
-        [SerializeField]
 
         #endregion
 
@@ -60,14 +54,14 @@ namespace Gameplay.Elements
         private void HandleTurretRotation()
         {
             _angleFactor = Mathf.Clamp(_angleFactor + _angleFactorIncrement * Time.deltaTime, -1, 1);
-            var angleInDegrees = _maxRotationAngle * _angleFactor;
+            var angleInDegrees = _params.MaxRotationAngle * _angleFactor;
             var cannonDirection = Quaternion.AngleAxis(angleInDegrees, _rotateTransform.up);
             _rotateTransform.localRotation = cannonDirection;
         }
 
         public void SetRotationForce(float force)
         {
-            _angleFactorIncrement = (force * _speed * ROTATION_SPEED_FACTOR);
+            _angleFactorIncrement = (force * _params.RotationSpeed * _params.RotationSpeedFactor);
         }
 
         public void Fire()
@@ -83,7 +77,7 @@ namespace Gameplay.Elements
             pR.Launch(_launchProjectilePivotR.rotation);
 
             GameplayServices.WaitService
-                .WaitFor(_cooldownDuration)
+                .WaitFor(_params.CooldownDuration)
                 .OnStart(() => Debug.Log("Cooldown Start"))
                 .OnProgress(progress => Debug.Log("Cooldown progress: " + progress))
                 .OnEnd(() => IsInCooldown = false);
