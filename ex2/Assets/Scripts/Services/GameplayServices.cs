@@ -1,5 +1,7 @@
 ﻿using Core;
+using DefaultNamespace.Coroutine_Exercise;
 using GameInput;
+using Notifications;
 using UnityEngine;
 
 namespace Services
@@ -9,6 +11,9 @@ namespace Services
         #region Fields
 
         private static UnityCore _unityCore;
+        private static EventBus _eb;
+        private static GameplayVfxManager _gameplayVfxManager;
+        private static IWaitService _waitService;
 
         #endregion
 
@@ -24,6 +29,10 @@ namespace Services
             _unityCore.RegisterOnEnableAware(inputManager);
 
             Object.DontDestroyOnLoad(go);
+
+            _eb = new EventBus();
+            _gameplayVfxManager = new GameplayVfxManager();
+            _waitService = new WaitService();
         }
 
         #endregion
@@ -36,6 +45,8 @@ namespace Services
         }
 
         public static ICoroutineService CoroutineService => _unityCore;
+        public static EventBus EventBus => _eb;
+        public static IWaitService WaitService => _waitService;
 
         #endregion
     }

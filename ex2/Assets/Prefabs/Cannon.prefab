@@ -4995,16 +4995,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rotateTransform: {fileID: 4293911210105806}
-  _speed: 5
+  _speed: 37.6
   _maxRotationAndle: 40
   _cannonAnimator: {fileID: 106417059}
-  _aimDistance: 0
-  _launchPower: 20
-  _maxLaunchDistance: 15
   _launchProjectilePivotL: {fileID: 4716974897732202}
   _launchProjectilePivotR: {fileID: 4343527735149478}
-  _turretCooldown: 0
-  _cooldownIndicatorPivot: {fileID: 2106382244573335096}
+  _cooldownDuration: 1.5
 --- !u!1 &1594891350553100
 GameObject:
   m_ObjectHideFlags: 0

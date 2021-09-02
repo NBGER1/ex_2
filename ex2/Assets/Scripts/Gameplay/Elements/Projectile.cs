@@ -1,9 +1,9 @@
-﻿using System;
-using System.Security.Cryptography;
+﻿
 using DefaultNamespace.ScriptableObjects;
 using Factories;
+using Notifications;
+using Services;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 namespace Gameplay.Elements
 {
@@ -42,6 +42,8 @@ namespace Gameplay.Elements
         {
             if (other.gameObject.CompareTag(_params.COLLISION_TAG))
             {
+                UnityEngine.Vector3 collisionPoint = other.contacts[0].point;
+                GameplayServices.EventBus.Publish(GameplayEventType.ProjectileHitCar, new ProjecitleHitCarEventParams(collisionPoint));
                 Destroy(gameObject);
             }
         }

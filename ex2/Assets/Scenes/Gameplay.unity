@@ -503,6 +503,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6843140908416569910, guid: 4e04dbca0d2752449af5de224b6727e8, type: 3}
+      propertyPath: _cooldownDuration
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e04dbca0d2752449af5de224b6727e8, type: 3}
 --- !u!1001 &183124148
@@ -1799,6 +1803,36 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4256240264835014, guid: 089d2d61edbf9439a9e118f9abf5516d, type: 3}
   m_PrefabInstance: {fileID: 1126533163}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1169137812
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1169137813}
+  m_Layer: 0
+  m_Name: DebugExplosionPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1169137813
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1169137812}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -13.18, y: 0, z: 14.88}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1180652408
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2700,6 +2734,7 @@ GameObject:
   - component: {fileID: 1676513402}
   - component: {fileID: 1676513401}
   - component: {fileID: 1676513403}
+  - component: {fileID: 1676513404}
   m_Layer: 0
   m_Name: GameplayElements
   m_TagString: Untagged
@@ -2721,6 +2756,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cannon: {fileID: 1264546692}
   _projectileFactory: {fileID: 1676513403}
+  _explosionFactoryBase: {fileID: 1676513404}
 --- !u!4 &1676513402
 Transform:
   m_ObjectHideFlags: 0
@@ -2748,6 +2784,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _projectilePrefabRef: {fileID: 1552339098034316, guid: 192012917ed44554dbeca67e83335ad1, type: 3}
+--- !u!114 &1676513404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676513400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e447aec9f60e424f869cf87c034c2918, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _explosionPrefabRef: {fileID: 4472293459428272497, guid: 6b746b7fbdb3db545a5cf631afbc0be9, type: 3}
 --- !u!1001 &1707587284
 PrefabInstance:
   m_ObjectHideFlags: 0

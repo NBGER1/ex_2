@@ -1,4 +1,6 @@
 ﻿using DefaultNamespace.Gameplay;
+using Notifications;
+using Services;
 using UnityEditor;
 using UnityEngine;
 
@@ -16,6 +18,18 @@ namespace DefaultNamespace.Editor
             }
 
             GameplayElements.Instance.Cannon.Fire();
+        }
+        [MenuItem("Gamepleay/Debug Explosion Vfx")]
+        public static void DebugExplosion()
+        {
+            if (!EditorApplication.isPlaying)
+            {
+                Debug.LogError("Enter playmode first");
+                return;
+            }
+
+            var edp = GameObject.Find("DebugExplosionPosition");
+               GameplayServices.EventBus.Publish(GameplayEventType.ProjectileHitCar, new ProjecitleHitCarEventParams(edp.transform.position));
         }
     }
 }

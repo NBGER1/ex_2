@@ -29,7 +29,7 @@ namespace Gameplay.Elements
         [SerializeField] private Transform _launchProjectilePivotL;
 
         [SerializeField] private Transform _launchProjectilePivotR;
-        [SerializeField] [Range(0.1f, 5f)] private float _cooldownDuration = 1.5f;
+        [SerializeField] [Range(1,3)] private int _cooldownDuration = 1;
 
         #endregion
 
@@ -71,12 +71,22 @@ namespace Gameplay.Elements
         {
             if (IsInCooldown) return;
             IsInCooldown = true;
+
+   
+
             _cannonAnimator.SetTrigger(_launchTriggerHash);
             var pL = GameplayElements.Instance.ProjectileFactory.Create(_launchProjectilePivotL.position);
             pL.Launch(_launchProjectilePivotL.rotation);
             var pR = GameplayElements.Instance.ProjectileFactory.Create(_launchProjectilePivotR.position);
             pR.Launch(_launchProjectilePivotR.rotation);
-            GameplayServices.CoroutineService.WaitFor(_cooldownDuration, () => { IsInCooldown = false; });
+            
+            GameplayServices.WaitService
+                .WaitFor(_cooldownDuration)
+                .OnStart(() => Debug.Log("Cooldown Start"))
+                .OnProgress(progress => Debug.Log("Cooldown progress: " + progress))
+                .OnEnd(() => IsInCooldown = false);
+            
+            //GameplayServices.CoroutineService.WaitFor(_cooldownDuration, () => { IsInCooldown = false; });
         }
 
         #region Properties

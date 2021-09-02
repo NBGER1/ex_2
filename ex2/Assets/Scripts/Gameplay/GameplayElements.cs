@@ -9,7 +9,7 @@ namespace DefaultNamespace.Gameplay
     {
         [SerializeField] private Cannon _cannon;
         [SerializeField] private ProjectileFactoryBase _projectileFactory;
-
+        [SerializeField] private ExplosionFactoryBase _explosionFactoryBase;
         protected override GameplayElements GetInstance()
         {
             return this;
@@ -17,5 +17,6 @@ namespace DefaultNamespace.Gameplay
 
         public Cannon Cannon => _cannon;
         public ProjectileFactoryBase ProjectileFactory => _projectileFactory;
+        public ExplosionFactoryBase ExplosionFactory => _explosionFactoryBase;
     }
 }
