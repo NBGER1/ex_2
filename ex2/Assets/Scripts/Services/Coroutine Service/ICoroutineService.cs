@@ -8,6 +8,5 @@ namespace Core
     {
         Coroutine RunCoroutine(IEnumerator coroutineBody);
         public void EndCoroutine(Coroutine coroutine);
-        void WaitFor(float delaySeconds, Action endCallback);
     }
 }

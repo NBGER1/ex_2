@@ -2,10 +2,10 @@
 
 namespace Services
 {
-    public class Awaiter
+    public class Awaiter : IAwaiter
     {
         private Action _onStartCallback;
-        private Action<int> _onProgressCallback;
+        private Action<float> _onProgressCallback;
         private Action _onEndCallback;
 
         public Awaiter OnStart(Action onStartCallback)
@@ -14,7 +14,7 @@ namespace Services
             return this;
         }
 
-        public Awaiter OnProgress(Action<int> onProgressCallback)
+        public Awaiter OnProgress(Action<float> onProgressCallback)
         {
             _onProgressCallback = onProgressCallback;
             return this;
@@ -36,7 +36,7 @@ namespace Services
             _onEndCallback?.Invoke();
         }
 
-        public void Progress(int progress)
+        public void Progress(float progress)
         {
             _onProgressCallback?.Invoke(progress);
         }

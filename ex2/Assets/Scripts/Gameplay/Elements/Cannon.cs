@@ -29,7 +29,7 @@ namespace Gameplay.Elements
         [SerializeField] private Transform _launchProjectilePivotL;
 
         [SerializeField] private Transform _launchProjectilePivotR;
-        [SerializeField] [Range(1, 3)] private int _cooldownDuration = 1;
+        [SerializeField] [Range(1f, 3f)] private float _cooldownDuration = 1f;
 
         #endregion
 
@@ -84,6 +84,10 @@ namespace Gameplay.Elements
                 .OnStart(() => Debug.Log("Cooldown Start"))
                 .OnProgress(progress => Debug.Log("Cooldown progress: " + progress))
                 .OnEnd(() => IsInCooldown = false);
+
+            //# The code below is to test awaiter exercise only!
+            var testWait = 5.8f;
+            GameplayServices.WaitService.WaitFor(testWait, () => { Debug.Log($"{testWait} seconds have passed"); });
         }
 
         #region Properties

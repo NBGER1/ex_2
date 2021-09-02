@@ -5,6 +5,7 @@ namespace DefaultNamespace.Coroutine_Exercise
 {
     public interface IWaitService
     {
-        Awaiter WaitFor(int delaySeconds);
+        IAwaiter WaitFor(float delay);
+        void WaitFor(float delay, Action callback);
     }
 }

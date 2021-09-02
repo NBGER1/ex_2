@@ -19,7 +19,7 @@ namespace DefaultNamespace.Coroutine_Exercise
             Debug.Log("Coroutine started");
         }
 
-        private void OnProgress(int progress)
+        private void OnProgress(float progress)
         {
             Debug.Log("Coroutine progress = " + progress);
         }
@@ -29,7 +29,7 @@ namespace DefaultNamespace.Coroutine_Exercise
             Debug.Log("Coroutine Ended");
         }
 
-        private IEnumerator DummyCoroutine(Action onStart, Action<int> onProgress, Action onEnd)
+        private IEnumerator DummyCoroutine(Action onStart, Action<float> onProgress, Action onEnd)
         {
             var progress = 0;
             onStart?.Invoke();
