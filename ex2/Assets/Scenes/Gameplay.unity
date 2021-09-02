@@ -518,7 +518,7 @@ PrefabInstance:
     - target: {fileID: 6843140908416569910, guid: 4e04dbca0d2752449af5de224b6727e8, type: 3}
       propertyPath: _params
       value: 
-      objectReference: {fileID: 11400000, guid: 6ddc71193f070434292ae8f6c72ad1f2, type: 2}
+      objectReference: {fileID: 11400000, guid: 7773fd5b0d98fb541af257c2ad7da293, type: 2}
     - target: {fileID: 6843140908416569910, guid: 4e04dbca0d2752449af5de224b6727e8, type: 3}
       propertyPath: _cooldownDuration
       value: 1
@@ -980,6 +980,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 499308, guid: 149bd14d5c2800b42ba8f89d0c68abd3, type: 3}
   m_PrefabInstance: {fileID: 493266414}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &571028019
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 571028020}
+  - component: {fileID: 571028021}
+  m_Layer: 0
+  m_Name: Bullet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &571028020
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 571028019}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1951225594}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &571028021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 571028019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffc1ae4544db4900b2a566543ac33b17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _projectilePrefabRef: {fileID: 1308972952908988, guid: 96be50b8a3d93cd41b6d732919102483, type: 3}
 --- !u!1001 &598746216
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2907,6 +2951,7 @@ MonoBehaviour:
   _cannon: {fileID: 1264546692}
   _projectileFactory: {fileID: 2055995517}
   _bombFactory: {fileID: 1763250147}
+  _bulletFactory: {fileID: 571028021}
   _explosionFactoryBase: {fileID: 1593874262}
 --- !u!4 &1676513402
 Transform:
@@ -3377,6 +3422,7 @@ Transform:
   - {fileID: 1763250146}
   - {fileID: 2055995516}
   - {fileID: 1593874263}
+  - {fileID: 571028020}
   m_Father: {fileID: 1676513402}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

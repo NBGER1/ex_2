@@ -71,9 +71,9 @@ namespace Gameplay.Elements
 
 
             _cannonAnimator.SetTrigger(_launchTriggerHash);
-            var pL = GameplayElements.Instance.BombFactory.Create(_launchProjectilePivotL.position);
+            var pL = GameplayElements.Instance.BulletFactory.Create(_launchProjectilePivotL.position);
             pL.Launch(_launchProjectilePivotL.rotation);
-            var pR = GameplayElements.Instance.BombFactory.Create(_launchProjectilePivotR.position);
+            var pR = GameplayElements.Instance.BulletFactory.Create(_launchProjectilePivotR.position);
             pR.Launch(_launchProjectilePivotR.rotation);
 
             GameplayServices.WaitService

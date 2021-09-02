@@ -4940,7 +4940,7 @@ GameObject:
   - component: {fileID: 106417059}
   - component: {fileID: 6843140908416569910}
   m_Layer: 0
-  m_Name: Cannon
+  m_Name: Cannon_Minigun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4994,13 +4994,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81cbce6f8e78ceb479f1f453c8a9cf51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _params: {fileID: 11400000, guid: 7773fd5b0d98fb541af257c2ad7da293, type: 2}
   _rotateTransform: {fileID: 4293911210105806}
-  _speed: 37.6
-  _maxRotationAndle: 40
   _cannonAnimator: {fileID: 106417059}
   _launchProjectilePivotL: {fileID: 4716974897732202}
   _launchProjectilePivotR: {fileID: 4343527735149478}
-  _cooldownDuration: 1.5
 --- !u!1 &1594891350553100
 GameObject:
   m_ObjectHideFlags: 0

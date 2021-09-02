@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Gameplay.Elements
 {
-    public class Projectile : MonoBehaviour, IProjectile
+    public class Bullet : MonoBehaviour, IProjectile
     {
         #region Editor
 
@@ -19,22 +19,32 @@ namespace Gameplay.Elements
 
         #endregion
 
+        #region Fields
+
+        private bool _isWarmingUp = true;
+
+        #endregion
+
         #region Methods
 
         private void Awake()
         {
             _selfTransform = transform;
             _rb.mass = _params.Mass;
+            _selfTransform.localScale = _params.ModelScale;
         }
 
         public void Launch(Quaternion launchRotation)
         {
             _selfTransform.rotation = launchRotation;
             _startPoint = _selfTransform.position;
+            GameplayServices.WaitService.WaitFor(_params.WarmUpTime, () => { _isWarmingUp = false; });
         }
 
         private void FixedUpdate()
         {
+            if (_isWarmingUp) return;
+
             _rb.velocity = _selfTransform.forward * _params.Speed;
             if (Vector3.Distance(_startPoint, _selfTransform.position) > _params.MaxDistance) Destroy(gameObject);
         }
@@ -49,6 +59,7 @@ namespace Gameplay.Elements
                 Destroy(gameObject);
             }
         }
+
         #endregion
     }
 }
