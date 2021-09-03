@@ -19,3 +19,5 @@ MonoBehaviour:
   _maxDistance: 100
   _mass: 0.1
   _warmUpTime: 0
+  _modelScale: {x: 1, y: 1, z: 1}
+  _projectileName: Bomba

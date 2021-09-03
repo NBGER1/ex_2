@@ -2,6 +2,7 @@
 {
     public enum GameplayEventType
     {
-        ProjectileHitCar
+        ProjectileHitCar,
+        RocketLaunched
     }
 }

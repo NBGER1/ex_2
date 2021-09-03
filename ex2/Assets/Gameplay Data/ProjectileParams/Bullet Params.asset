@@ -20,3 +20,4 @@ MonoBehaviour:
   _mass: 0.5
   _warmUpTime: 0.05
   _modelScale: {x: 0.5, y: 0.5, z: 0.5}
+  _projectileName: 50mm Bullet

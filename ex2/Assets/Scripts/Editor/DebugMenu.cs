@@ -19,6 +19,7 @@ namespace DefaultNamespace.Editor
 
             GameplayElements.Instance.Cannon.Fire();
         }
+
         [MenuItem("Gamepleay/Debug Explosion Vfx")]
         public static void DebugExplosion()
         {
@@ -29,7 +30,8 @@ namespace DefaultNamespace.Editor
             }
 
             var edp = GameObject.Find("DebugExplosionPosition");
-               GameplayServices.EventBus.Publish(GameplayEventType.ProjectileHitCar, new ProjecitleHitCarEventParams(edp.transform.position));
+            GameplayServices.EventBus.Publish(GameplayEventType.ProjectileHitCar,
+                new ProjectileHitCarEventParams(edp.transform.position));
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Core;
 using DefaultNamespace.Gameplay;
 using Factories;
+using Notifications;
 using Services;
 using UnityEngine;
 
@@ -43,6 +44,12 @@ namespace Gameplay.Elements
         #endregion
 
         #region Methods
+
+        private void OnRocketLaunched(EventParams e)
+        {
+            var eParams = e as RocketLaunchedEventParams;
+            Debug.Log($"OnRocketLaunched | Origin: {eParams?.Origin} | Projectile Name: {eParams?.ProjectileName}");
+        }
 
         private void Awake()
         {
@@ -91,6 +98,7 @@ namespace Gameplay.Elements
         {
             _params = cannonParams;
             _projectileFactory = projectileFactory;
+            GameplayServices.EventBus.Subscribe(GameplayEventType.RocketLaunched, OnRocketLaunched);
             _isInitialized = true;
         }
 

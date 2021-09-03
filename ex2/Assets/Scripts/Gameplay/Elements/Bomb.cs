@@ -40,6 +40,9 @@ namespace Gameplay.Elements
             GameplayServices.WaitService.WaitFor(_params.WarmUpTime, () =>
             {
                 _isWarmingUp = false;
+                //# Event Handling
+                GameplayServices.EventBus.Publish(GameplayEventType.RocketLaunched,
+                    new RocketLaunchedEventParams(_params.ProjectileName, _startPoint));
                 _rb.AddRelativeForce((Vector3.up + Vector3.forward) * _params.Speed);
             });
         }
@@ -57,7 +60,7 @@ namespace Gameplay.Elements
             {
                 UnityEngine.Vector3 collisionPoint = other.contacts[0].point;
                 GameplayServices.EventBus.Publish(GameplayEventType.ProjectileHitCar,
-                    new ProjecitleHitCarEventParams(collisionPoint));
+                    new ProjectileHitCarEventParams(collisionPoint));
                 Destroy(gameObject);
             }
         }

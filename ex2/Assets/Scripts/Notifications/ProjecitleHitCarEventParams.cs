@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 namespace Notifications
 {
-    public class ProjecitleHitCarEventParams : EventParams
+    public class ProjectileHitCarEventParams : EventParams
     {
-        public ProjecitleHitCarEventParams(Vector3 hitPoint)
+        public ProjectileHitCarEventParams(Vector3 hitPoint)
         {
             HitPoint = hitPoint;
         }

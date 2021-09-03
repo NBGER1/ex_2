@@ -38,7 +38,13 @@ namespace Gameplay.Elements
         {
             _selfTransform.rotation = launchRotation;
             _startPoint = _selfTransform.position;
-            GameplayServices.WaitService.WaitFor(_params.WarmUpTime, () => { _isWarmingUp = false; });
+            GameplayServices.WaitService.WaitFor(_params.WarmUpTime, () =>
+            {
+                _isWarmingUp = false;
+                //# Event Handling
+                GameplayServices.EventBus.Publish(GameplayEventType.RocketLaunched,
+                    new RocketLaunchedEventParams(_params.ProjectileName, _startPoint));
+            });
         }
 
         private void FixedUpdate()
@@ -55,7 +61,7 @@ namespace Gameplay.Elements
             {
                 UnityEngine.Vector3 collisionPoint = other.contacts[0].point;
                 GameplayServices.EventBus.Publish(GameplayEventType.ProjectileHitCar,
-                    new ProjecitleHitCarEventParams(collisionPoint));
+                    new ProjectileHitCarEventParams(collisionPoint));
                 Destroy(gameObject);
             }
         }

@@ -19,9 +19,9 @@ namespace Services
 
         private void OnProjectileHitCar(EventParams e)
         {
-            var hitParams = e as ProjecitleHitCarEventParams;
+            var hitParams = e as ProjectileHitCarEventParams;
             var explosion = GameplayElements.Instance.ExplosionFactory.Create(hitParams.HitPoint);
-            Debug.Log("Car hit at = " + hitParams);
+            Debug.Log("OnProjectileHitCar");
         }
 
         #endregion
