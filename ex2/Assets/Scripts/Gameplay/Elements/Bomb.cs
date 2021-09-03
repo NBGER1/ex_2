@@ -40,6 +40,8 @@ namespace Gameplay.Elements
             GameplayServices.WaitService.WaitFor(_params.WarmUpTime, () =>
             {
                 _isWarmingUp = false;
+                //# Audio
+                AudioManager.Instance.PlayEffect("BOMB_LAUNCHED",_startPoint);
                 //# Event Handling
                 GameplayServices.EventBus.Publish(GameplayEventType.RocketLaunched,
                     new RocketLaunchedEventParams(_params.ProjectileName, _startPoint));
