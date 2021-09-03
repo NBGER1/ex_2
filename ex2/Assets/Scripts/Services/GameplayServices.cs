@@ -29,7 +29,6 @@ namespace Services
             var inputManager = new StandaloneInputManager();
             _gameplayCore = new GameplayCore();
 
-            AudioManager.Instance.Init();
             //# Register Updatable
             _unityCore.RegisterUpdatable(inputManager);
             _unityCore.RegisterUpdatable(_gameplayCore);
@@ -41,10 +40,11 @@ namespace Services
             _eb = new EventBus();
             _gameplayVfxManager = new GameplayVfxManager();
             _waitService = new WaitService();
-            
+
             //# Game
+            AudioManager.Instance.Init();
             _gameplayCore.StartGame();
-            
+
             Object.DontDestroyOnLoad(go);
         }
 

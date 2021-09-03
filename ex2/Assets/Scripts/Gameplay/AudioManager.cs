@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Notifications;
 using Services;
 using UnityEngine;
 
@@ -21,25 +22,37 @@ public class AudioManager : Singleton<AudioManager>
 
     #region Methods
 
+    private void OnRocketLaunched(EventParams e)
+    {
+        var eParams = e as RocketLaunchedEventParams;
+        var go = Instantiate(_audioSourceGoPrefab, eParams.Origin, Quaternion.identity);
+        var index = _effects["BOMB_LAUNCHED"];
+        go.GetComponent<AudioSourceGameObject>().Init(_effectsClips[index]);
+    }
+
+    private void OnExplosion(EventParams e)
+    {
+        var eParams = e as ProjectileHitCarEventParams;
+        var go = Instantiate(_audioSourceGoPrefab, eParams.HitPoint, Quaternion.identity);
+        var index = _effects["EXPLOSION"];
+        go.GetComponent<AudioSourceGameObject>().Init(_effectsClips[index]);
+    }
+
+
     public void Init()
     {
+        //# Dictionary
         _effects.Add("EXPLOSION", 0);
         _effects.Add("BOMB_LAUNCHED", 1);
 
-        Debug.Log("AudioManager Initialized");
+        //# Subscribe Events
+        GameplayServices.EventBus.Subscribe(GameplayEventType.RocketLaunched, OnRocketLaunched);
+        GameplayServices.EventBus.Subscribe(GameplayEventType.ProjectileHitCar, OnExplosion);
     }
 
     protected override AudioManager GetInstance()
     {
         return this;
-    }
-
-    public void PlayEffect(string effectName, Vector3 position)
-    {
-        var index = _effects[effectName];
-        //_audioSource.PlayOneShot(_effectsClips[index]);
-        var go = Instantiate(_audioSourceGoPrefab, position, Quaternion.identity);
-        go.GetComponent<AudioSourceGameObject>().Init(_effectsClips[index]);
     }
 
     #endregion

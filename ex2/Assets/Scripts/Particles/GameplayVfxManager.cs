@@ -22,7 +22,6 @@ namespace Services
             var hitParams = e as ProjectileHitCarEventParams;
             var explosion = GameplayElements.Instance.ExplosionFactory.Create(hitParams.HitPoint);
             Debug.Log("OnProjectileHitCar");
-            AudioManager.Instance.PlayEffect("EXPLOSION", hitParams.HitPoint);
         }
 
         #endregion

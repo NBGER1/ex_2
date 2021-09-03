@@ -20,4 +20,4 @@ MonoBehaviour:
   _mass: 1
   _warmUpTime: 0.05
   _modelScale: {x: 1, y: 1, z: 1}
-  _projectileName: Missile Mk1
+  _projectileName: PROJECTILE
