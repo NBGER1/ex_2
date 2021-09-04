@@ -584,9 +584,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cannon
       objectReference: {fileID: 0}
+    - target: {fileID: 1570450073803288, guid: 4e04dbca0d2752449af5de224b6727e8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4960445908660494, guid: 4e04dbca0d2752449af5de224b6727e8, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4960445908660494, guid: 4e04dbca0d2752449af5de224b6727e8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -632,6 +636,10 @@ PrefabInstance:
       propertyPath: _params
       value: 
       objectReference: {fileID: 11400000, guid: 7773fd5b0d98fb541af257c2ad7da293, type: 2}
+    - target: {fileID: 6843140908416569910, guid: 4e04dbca0d2752449af5de224b6727e8, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6843140908416569910, guid: 4e04dbca0d2752449af5de224b6727e8, type: 3}
       propertyPath: _cooldownDuration
       value: 1
@@ -6548,7 +6556,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 51.01, y: -63.7, z: 0}
 --- !u!1001 &829295039
 PrefabInstance:
@@ -7736,7 +7744,7 @@ Transform:
   - {fileID: 958824728}
   - {fileID: 2144998617}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1322120330 stripped
 Transform:

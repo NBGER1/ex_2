@@ -20,7 +20,6 @@ namespace Gameplay.Elements
 
         [SerializeField] private Transform _rotateTransform;
 
-
         [SerializeField] private Animator _cannonAnimator;
 
         [SerializeField] private Transform _launchProjectilePivotL;
@@ -68,6 +67,8 @@ namespace Gameplay.Elements
             var angleInDegrees = _params.MaxRotationAngle * _angleFactor;
             var cannonDirection = Quaternion.AngleAxis(angleInDegrees, _rotateTransform.up);
             _rotateTransform.localRotation = cannonDirection;
+            Debug.Log(cannonDirection);
+
         }
 
         public void SetRotationForce(float force)
