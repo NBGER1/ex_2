@@ -4,9 +4,15 @@ namespace Services
 {
     public class Awaiter : IAwaiter
     {
+        #region Fields
+
         private Action _onStartCallback;
         private Action<float> _onProgressCallback;
         private Action _onEndCallback;
+
+        #endregion
+
+        #region Methods
 
         public Awaiter OnStart(Action onStartCallback)
         {
@@ -40,5 +46,7 @@ namespace Services
         {
             _onProgressCallback?.Invoke(progress);
         }
+
+        #endregion
     }
 }

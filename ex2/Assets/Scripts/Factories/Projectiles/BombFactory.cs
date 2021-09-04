@@ -7,7 +7,13 @@ namespace Factories
 {
     public class BombFactory : ProjectileFactoryBase
     {
+        #region Editor
+
         [SerializeField] private Object _projectilePrefabRef;
+
+        #endregion
+
+        #region Methods
 
         public override IProjectile Create(Vector3 atPosition)
         {
@@ -16,5 +22,7 @@ namespace Factories
             projectile.transform.position = atPosition;
             return p;
         }
+
+        #endregion
     }
 }

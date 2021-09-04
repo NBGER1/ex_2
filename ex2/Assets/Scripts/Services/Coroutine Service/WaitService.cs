@@ -8,6 +8,8 @@ namespace DefaultNamespace.Coroutine_Exercise
 {
     public class WaitService : IWaitService
     {
+        #region Methods
+
         public IAwaiter WaitFor(float delay)
         {
             IAwaiter awaiter = new Awaiter();
@@ -47,5 +49,7 @@ namespace DefaultNamespace.Coroutine_Exercise
 
             callback?.Invoke();
         }
+
+        #endregion
     }
 }

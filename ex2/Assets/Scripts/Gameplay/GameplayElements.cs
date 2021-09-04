@@ -7,6 +7,8 @@ namespace DefaultNamespace.Gameplay
 {
     public class GameplayElements : Singleton<GameplayElements>
     {
+        #region Editor
+
         [SerializeField] private Cannon _cannon;
         [SerializeField] private ProjectileFactoryBase _projectileFactory;
         [SerializeField] private ProjectileFactoryBase _bombFactory;
@@ -14,10 +16,18 @@ namespace DefaultNamespace.Gameplay
         [SerializeField] private ExplosionFactoryBase _explosionFactoryBase;
         [SerializeField] private CannonParams _cannonParams;
 
+        #endregion
+
+        #region Methods
+
         protected override GameplayElements GetInstance()
         {
             return this;
         }
+
+        #endregion
+
+        #region Properties
 
         public Cannon Cannon => _cannon;
         public ProjectileFactoryBase ProjectileFactory => _projectileFactory;
@@ -25,5 +35,7 @@ namespace DefaultNamespace.Gameplay
         public ProjectileFactoryBase BulletFactory => _bulletFactory;
         public ExplosionFactoryBase ExplosionFactory => _explosionFactoryBase;
         public CannonParams CannonParams => _cannonParams;
+
+        #endregion
     }
 }

@@ -12,9 +12,13 @@ public class AudioSourceGameObject : MonoBehaviour
 
     #endregion
 
+    #region Methods
+
     public void Init(AudioClip clip)
     {
         _audioSource.PlayOneShot(clip);
         GameplayServices.WaitService.WaitFor(clip.length, () => { Destroy(gameObject); });
     }
+
+    #endregion
 }

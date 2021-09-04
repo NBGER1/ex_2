@@ -23,7 +23,10 @@ namespace DefaultNamespace.Gameplay
 
         public void StartGame()
         {
+            //# Init Gampelay UI values
             UIManager.Instance.SetRocketsLaunchedText(_rocketsLaunched.ToString());
+            //# Gameplay Events
+            
             GameplayServices.EventBus.Subscribe(GameplayEventType.RocketLaunched, OnRocketLaunched);
             GameplayElements.Instance.Cannon.Init(
                 GameplayElements.Instance.CannonParams,
