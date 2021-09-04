@@ -26,7 +26,7 @@ public class AudioManager : Singleton<AudioManager>
     {
         var eParams = e as RocketLaunchedEventParams;
         var go = Instantiate(_audioSourceGoPrefab, eParams.Origin, Quaternion.identity);
-        var index = _effects["BOMB_LAUNCHED"];
+        var index = _effects["ROCKET_LAUNCHED"];
         go.GetComponent<AudioSourceGameObject>().Init(_effectsClips[index]);
     }
 
@@ -43,7 +43,7 @@ public class AudioManager : Singleton<AudioManager>
     {
         //# Dictionary
         _effects.Add("EXPLOSION", 0);
-        _effects.Add("BOMB_LAUNCHED", 1);
+        _effects.Add("ROCKET_LAUNCHED", 1);
 
         //# Subscribe Events
         GameplayServices.EventBus.Subscribe(GameplayEventType.RocketLaunched, OnRocketLaunched);
